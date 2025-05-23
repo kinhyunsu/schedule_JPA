@@ -3,6 +3,7 @@ package com.example.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Entity
@@ -36,6 +37,10 @@ public class User extends BaseTimeEntity {
         this.password = password;
         this.age = age;
         this.email = email;
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
     }
 
 }

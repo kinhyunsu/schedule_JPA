@@ -3,6 +3,7 @@ package com.example.schedule.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+
 @Getter
 @Entity
 @Table(name="Schedule")
@@ -19,9 +20,27 @@ public class Schedule extends BaseTimeEntity {
     @Column(columnDefinition = "longtext")
     private String contents;
 
+    @Column(nullable = false)
+    private String email;
+
     @ManyToOne //단방향 설정
     @JoinColumn(name = "user_id") // user_id와 join
     private User user;
 
+    //기본 생성자
+    public Schedule() {
+
+    }
+
+    public Schedule(String title, String contents, String email) {
+        this.title = title;
+        this.contents = contents;
+        this.email = email;
+    }
+
+    @SuppressWarnings("unused") // 경고 무시 어노테이션
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }
