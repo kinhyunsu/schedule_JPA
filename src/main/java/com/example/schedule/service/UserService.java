@@ -59,4 +59,11 @@ public class UserService {
         findUser.updatePassword(newPassword);
 
     }
+
+    public void delete(Long id) {
+
+        User findUser = userRepository.findByIdOrElseThrow(id);
+
+        userRepository.delete(findUser);
+    }
 }
