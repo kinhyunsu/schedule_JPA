@@ -1,7 +1,7 @@
-package com.example.config;
+package com.example.common.config;
 
 
-import com.example.filter.LoginFilter;
+import com.example.common.filter.LoginFilter;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

@@ -3,6 +3,7 @@ package com.example.schedule.service;
 
 import com.example.schedule.dto.SignUpResponseDto;
 import com.example.schedule.dto.UserDto.UserResponseDto;
+import com.example.schedule.dto.loginDto.LoginRequestDto;
 import com.example.schedule.entity.User;
 import com.example.schedule.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service // 확장될 이유가 없다면 사용 가능, 변경 및 확장 경우가 있다면 인터페이스로 설계
@@ -19,6 +21,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+
+    public User login(LoginRequestDto loginRequestDto) {
+        User findUser = userRepository.findByEmail(loginRequestDto.getEmail());
+        if (findUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return findUser;
+    }
 
 
     public SignUpResponseDto signUp(String username, String password, Integer age, String email) {
